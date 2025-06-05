@@ -3,14 +3,47 @@ import { readFileSync } from "fs";
 import path from "path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// Define proper TypeScript interfaces
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+}
+
+interface KnowledgeBase {
+  about: string;
+  skills: string[];
+  projects: Project[];
+  contact: Record<string, string>;
+  rules: string[];
+}
+
+interface FormattedKnowledgeBase {
+  about: string;
+  skills: string;
+  projects: string;
+  contact: string;
+  rules: string;
+}
+
+interface ChatRequest {
+  question: string;
+}
+
+interface ChatResponse {
+  answer?: string;
+  error?: string;
+  details?: string;
+}
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 const chatbotSystemPrompt = `
 You are Ibrahim Naoun's professional AI portfolio assistant.
 You must only answer questions about his work, experience, projects, or skills.
-You can exolain his background, skills, and projects in detail.
-Do not answer anything personal respond with:
-“I can't answer that, but feel free to check Ibrahim's LinkedIn or contact him directly.
+You can explain his background, skills, and projects in detail.
+Do not answer anything personal - respond with:
+"I can't answer that, but feel free to check Ibrahim's LinkedIn or contact him directly."
 Do not answer anything inappropriate, or unrelated — respond with:
 "I'm here to answer professional questions about Ibrahim's work. Please ask something relevant."
 If the user's message is not in English, kindly inform them that while you will attempt to translate and respond accurately. Do your best to translate and assist them in a professional manner.
@@ -18,7 +51,7 @@ If the user's message is not in English, kindly inform them that while you will 
 Use the following knowledge base: 
 `;
 
-const formatProjects = (projects: any[]) => {
+const formatProjects = (projects: Project[]): string => {
   return projects.map(project => {
     return `
 Project: ${project.title}
@@ -28,14 +61,14 @@ Technologies: ${project.technologies.join(', ')}
   }).join('\n');
 };
 
-const getKnowledgeBase = () => {
+const getKnowledgeBase = (): FormattedKnowledgeBase => {
   try {
     const filePath = path.join(process.cwd(), "lib", "knowledge_base.json");
     const fileContent = readFileSync(filePath, "utf-8");
-    const knowledgeBase = JSON.parse(fileContent);
+    const knowledgeBase: KnowledgeBase = JSON.parse(fileContent);
     
     // Format each section properly
-    const formattedKnowledgeBase: Record<string, string> = {
+    const formattedKnowledgeBase: FormattedKnowledgeBase = {
       about: knowledgeBase.about,
       skills: knowledgeBase.skills.join(', '),
       projects: formatProjects(knowledgeBase.projects),
@@ -52,12 +85,25 @@ const getKnowledgeBase = () => {
   }
 };
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
+export async function POST(req: NextRequest): Promise<NextResponse<ChatResponse>> {
+  let body: ChatRequest;
+  
+  try {
+    body = await req.json();
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Invalid request body" },
+      { status: 400 }
+    );
+  }
+
   const { question } = body;
 
   if (!question || typeof question !== "string") {
-    return NextResponse.json({ error: "Invalid question" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid question" },
+      { status: 400 }
+    );
   }
 
   try {
