@@ -1,39 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ibrahim Naoun - Professional Portfolio with AI Assistant 🤖
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
 
-First, run the development server:
+Welcome to my interactive professional portfolio powered by Next.js and Google's Gemini AI. This project showcases my skills, projects, and experience through both traditional UI elements and an AI-powered conversational interface.
 
+## ✨ Features
+
+- **AI Portfolio Assistant**: Ask questions about my professional background
+- **Modern Tech Stack**: Next.js 14, TypeScript, Tailwind CSS
+- **Real-time Knowledge Base**: Dynamic content loading from JSON
+- **Responsive Design**: Fully mobile-optimized interface
+- **Secure API Routes**: Protected endpoints for AI interactions
+
+## 🛠️ Technologies Used
+
+| Category       | Technologies                          |
+|----------------|---------------------------------------|
+| Frontend       | Next.js, React, Tailwind CSS          |
+| Backend        | Next.js API Routes                    |
+| AI Integration | Google Gemini API                     |
+| Tooling        | TypeScript, ESLint, Prettier          |
+| Deployment     | Vercel (or your hosting platform)    |
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Google Gemini API key
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# ibrahim-nexus
- AI-powered portfolio assistant for Ibrahim Naoun.
+git clone https://github.com/yourusername/your-repo.git
+cd your-repo
+npm install
