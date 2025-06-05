@@ -22,7 +22,7 @@ Welcome to my interactive professional portfolio powered by Next.js and Google's
 | Backend        | Next.js API Routes                    |
 | AI Integration | Google Gemini API                     |
 | Tooling        | TypeScript, ESLint, Prettier          |
-| Deployment     | Vercel (or your hosting platform)    |
+| Deployment     | Vercel    |
 
 ## 🚀 Getting Started
 
