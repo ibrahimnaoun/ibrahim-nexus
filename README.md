@@ -29,9 +29,3 @@ Welcome to my interactive professional portfolio powered by Next.js and Google's
 ### Prerequisites
 - Node.js 18+
 - Google Gemini API key
-
-### Installation
-```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
-npm install
